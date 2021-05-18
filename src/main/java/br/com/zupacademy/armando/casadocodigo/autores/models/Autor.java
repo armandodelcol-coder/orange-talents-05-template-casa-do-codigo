@@ -27,6 +27,10 @@ public class Autor {
     @Column(columnDefinition = "datetime", nullable = false)
     private LocalDateTime dataCriacao;
 
+    @Deprecated
+    public Autor() {
+    }
+
     public Autor(String email, String nome, String descricao) {
         this.email = email;
         this.nome = nome;

@@ -1,6 +1,7 @@
 package br.com.zupacademy.armando.casadocodigo.autores.forms;
 
 import br.com.zupacademy.armando.casadocodigo.autores.models.Autor;
+import br.com.zupacademy.armando.casadocodigo.core.validations.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 public class NovoAutorForm {
 
-    @NotBlank @Email
+    @NotBlank @Email @UniqueValue(entity = Autor.class, fieldName = "email")
     private String email;
     @NotBlank
     private String nome;

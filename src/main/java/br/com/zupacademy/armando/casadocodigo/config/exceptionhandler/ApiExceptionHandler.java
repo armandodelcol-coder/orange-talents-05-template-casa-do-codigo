@@ -1,4 +1,4 @@
-package br.com.zupacademy.armando.casadocodigo.core.validation;
+package br.com.zupacademy.armando.casadocodigo.config.exceptionhandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,21 +14,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class RequestErrorHandler {
+public class ApiExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<RequestErrorDto> handler(MethodArgumentNotValidException exception) {
+    public List<RequestFieldErrorDto> handler(MethodArgumentNotValidException exception) {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        List<RequestErrorDto> requestErrorDtos = fieldErrors.stream().map(fieldError -> {
+        List<RequestFieldErrorDto> requestFieldErrorDtos = fieldErrors.stream().map(fieldError -> {
             String mensagem = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-            RequestErrorDto requestErrorDto = new RequestErrorDto(fieldError.getField(), mensagem);
-            return requestErrorDto;
+            RequestFieldErrorDto requestFieldErrorDto = new RequestFieldErrorDto(fieldError.getField(), mensagem);
+            return requestFieldErrorDto;
         }).collect(Collectors.toList());
-        return requestErrorDtos;
+        return requestFieldErrorDtos;
     }
 
 }

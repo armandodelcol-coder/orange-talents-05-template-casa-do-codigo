@@ -1,11 +1,11 @@
-package br.com.zupacademy.armando.casadocodigo.core.validation;
+package br.com.zupacademy.armando.casadocodigo.config.exceptionhandler;
 
-public class RequestErrorDto {
+public class RequestFieldErrorDto {
 
     private String campo;
     private String erro;
 
-    public RequestErrorDto(String campo, String erro) {
+    public RequestFieldErrorDto(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }
