@@ -71,7 +71,6 @@ public class NovoClienteForm {
 
     public Cliente toModel(EntityManager entityManager) {
         Pais pais = entityManager.find(Pais.class, paisId);
-        Estado estado = entityManager.find(Estado.class, estadoId);
         Cliente cliente = new Cliente(
                 email,
                 nome,
@@ -84,7 +83,10 @@ public class NovoClienteForm {
                 telefone,
                 cep
         );
-        if (estado != null) cliente.setEstado(estado);
+        if (estadoId != null) {
+            Estado estado = entityManager.find(Estado.class, estadoId);
+            cliente.setEstado(estado);
+        }
         return cliente;
     }
 }

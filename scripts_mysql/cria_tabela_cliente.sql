@@ -8,7 +8,7 @@ create table tb_cliente(
     complemento varchar(255) not null,
     cidade varchar(255) not null,
     pais_id bigint not null,
-    estado_id bigint not null,
+    estado_id bigint,
     telefone varchar(255) not null,
     cep varchar(255) not null,
 
